@@ -1,0 +1,238 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Design Tokens - Modern 2026 Approach */
+@layer base {
+  :root {
+    /* Primary Colors */
+    --color-primary: #4F46E5;
+    --color-primary-hover: #4338CA;
+    --color-accent: #06B6D4;
+
+    /* Light Mode Colors */
+    --color-bg-primary: #FFFFFF;
+    --color-bg-secondary: #F9FAFB;
+    --color-bg-tertiary: #F3F4F6;
+
+    --color-text-primary: #111827;
+    --color-text-secondary: #6B7280;
+    --color-text-tertiary: #9CA3AF;
+
+    --color-border: #E5E7EB;
+    --color-border-hover: #D1D5DB;
+
+    /* Semantic Colors */
+    --color-success: #10B981;
+    --color-error: #EF4444;
+    --color-warning: #F59E0B;
+
+    /* Shadows - Spatial UI */
+    --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+    --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.1);
+    --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1);
+  }
+
+  /* Dark Mode - Smoky, Ambient Approach */
+  .dark {
+    --color-bg-primary: #0F172A;
+    --color-bg-secondary: #1E293B;
+    --color-bg-tertiary: #334155;
+
+    --color-text-primary: #F1F5F9;
+    --color-text-secondary: #CBD5E1;
+    --color-text-tertiary: #94A3B8;
+
+    --color-border: #334155;
+    --color-border-hover: #475569;
+
+    /* Neon accent glow for dark mode */
+    --accent-glow: 0 0 20px rgb(6 182 212 / 0.3);
+  }
+
+  /* Base Styles */
+  * {
+    @apply border-gray-200 dark:border-gray-700;
+  }
+
+  html {
+    @apply antialiased;
+  }
+
+  body {
+    @apply bg-white dark:bg-slate-900 text-gray-900 dark:text-gray-100;
+    @apply font-sans;
+    margin: 0;
+    min-height: 100vh;
+  }
+
+  /* Typography - Oversized for 2026 Clarity Trend */
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-semibold tracking-tight;
+  }
+
+  h1 {
+    @apply text-4xl md:text-5xl;
+  }
+
+  h2 {
+    @apply text-3xl md:text-4xl;
+  }
+
+  h3 {
+    @apply text-2xl md:text-3xl;
+  }
+
+  /* Links */
+  a {
+    @apply text-primary hover:text-primary-hover transition-colors;
+  }
+
+  /* Focus Styles - WCAG 2.2 Compliant */
+  *:focus {
+    @apply outline-none ring-2 ring-accent ring-offset-2;
+  }
+
+  *:focus:not(:focus-visible) {
+    @apply ring-0 ring-offset-0;
+  }
+
+  *:focus-visible {
+    @apply ring-2 ring-accent ring-offset-2;
+  }
+}
+
+/* Custom Component Classes */
+@layer components {
+  /* Buttons */
+  .btn {
+    @apply px-4 py-2 rounded-lg font-medium transition-all duration-200;
+    @apply focus:outline-none focus:ring-2 focus:ring-offset-2;
+    @apply disabled:opacity-50 disabled:cursor-not-allowed;
+  }
+
+  .btn-primary {
+    @apply btn bg-primary text-white hover:bg-primary-hover;
+    @apply focus:ring-primary;
+  }
+
+  .btn-secondary {
+    @apply btn bg-gray-200 dark:bg-gray-700 text-gray-900 dark:text-gray-100;
+    @apply hover:bg-gray-300 dark:hover:bg-gray-600;
+  }
+
+  .btn-ghost {
+    @apply btn bg-transparent hover:bg-gray-100 dark:hover:bg-gray-800;
+  }
+
+  /* Form Inputs */
+  .input-field {
+    @apply w-full px-3 py-2 border rounded-lg;
+    @apply bg-white dark:bg-slate-800;
+    @apply border-gray-300 dark:border-gray-700;
+    @apply text-gray-900 dark:text-gray-100;
+    @apply placeholder-gray-400 dark:placeholder-gray-500;
+    @apply focus:border-accent focus:ring-2 focus:ring-accent/20;
+    @apply transition-colors duration-200;
+  }
+
+  .input-error {
+    @apply border-red-500 focus:border-red-500 focus:ring-red-500/20;
+  }
+
+  .error-text {
+    @apply text-sm text-red-600 dark:text-red-400 mt-1;
+  }
+
+  /* Layout Components */
+  .sidebar {
+    @apply w-72 bg-gray-50 dark:bg-slate-800;
+    @apply border-r border-gray-200 dark:border-gray-700;
+    @apply overflow-y-auto;
+  }
+
+  .note-list-item {
+    @apply p-4 border-b border-gray-200 dark:border-gray-700;
+    @apply hover:bg-gray-100 dark:hover:bg-slate-700;
+    @apply cursor-pointer transition-colors duration-150;
+  }
+
+  .note-list-item.active {
+    @apply bg-blue-50 dark:bg-blue-900/20;
+    @apply border-l-4 border-l-primary;
+  }
+
+  /* Cards */
+  .card {
+    @apply bg-white dark:bg-slate-800;
+    @apply border border-gray-200 dark:border-gray-700;
+    @apply rounded-lg shadow-sm;
+  }
+
+  /* Editor Components */
+  .editor-toolbar {
+    @apply flex items-center gap-2 p-2;
+    @apply border-b border-gray-200 dark:border-gray-700;
+    @apply bg-gray-50 dark:bg-slate-800;
+  }
+
+  .toolbar-btn {
+    @apply p-2 rounded hover:bg-gray-200 dark:hover:bg-gray-700;
+    @apply text-gray-700 dark:text-gray-300;
+    @apply transition-colors duration-150;
+  }
+
+  .toolbar-btn.active {
+    @apply bg-primary text-white;
+  }
+
+  /* Loading Spinner */
+  .spinner {
+    @apply animate-spin rounded-full border-2 border-gray-300;
+    @apply border-t-primary;
+  }
+}
+
+/* Utility Classes */
+@layer utilities {
+  /* Reduced Motion Support */
+  @media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+    }
+  }
+
+  /* High Contrast Mode Support */
+  @media (prefers-contrast: high) {
+    :root {
+      --color-border: #000000;
+      --color-text-primary: #000000;
+    }
+
+    .dark {
+      --color-border: #FFFFFF;
+      --color-text-primary: #FFFFFF;
+    }
+  }
+
+  /* Custom Scrollbar */
+  .custom-scrollbar::-webkit-scrollbar {
+    @apply w-2;
+  }
+
+  .custom-scrollbar::-webkit-scrollbar-track {
+    @apply bg-gray-100 dark:bg-slate-800;
+  }
+
+  .custom-scrollbar::-webkit-scrollbar-thumb {
+    @apply bg-gray-300 dark:bg-gray-600 rounded-full;
+  }
+
+  .custom-scrollbar::-webkit-scrollbar-thumb:hover {
+    @apply bg-gray-400 dark:bg-gray-500;
+  }
+}
